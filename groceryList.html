@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>
+            GROCERY LIST
+        </title>
+        <link rel="stylesheet" href="css/groceryList..css">
+
+        <link rel="icon" href="image/Aravind1.jpg" type="image/x-icon">
+
+        
+    </head>
+    <body >
+            <div class="main" >
+                    <h2>Grocery List</h2>
+                    <div class="searchbar">
+                        <input type="text" id="writeList" onkeydown="check(event)">
+                        <span>Name of the product</span>
+                        <button onclick="additem()">Add Product</button>
+                        <hr>
+                    </div>
+              
+                 <ol >
+                </ol>
+           
+            </div>
+    </body>
+
+    <script>
+        const input = document.querySelector("#writeList");
+        const ol= document.querySelector("ol");
+
+        function check(e){
+            if(e.key ==="Enter"){
+                additem();
+            }
+        }
+        
+        function additem(){
+            if(input.value === ""){
+                alert(`Enter something`);
+            }
+            else{
+                const list = document.createElement("li");
+                const button = document.createElement("button");
+                const debutton=document.createElement("button");
+                debutton.innerHTML="-"
+                debutton.classList.add("delete-button");
+                const hr = document.createElement("hr");
+                button.innerHTML = "✓";
+                button.classList.add("acess-button");
+                list.innerText = input.value;
+                list.appendChild(debutton);
+                list.appendChild(button);
+                list.appendChild(hr);
+                ol.appendChild(list);
+                input.value = ""; 
+
+                
+               debutton.onclick =function(){
+                    ol.removeChild(list);
+               }
+                button.onclick = function() {
+                
+                list.classList.toggle("strike");
+                list.classList.contains("strike") ?   button.innerText="X" :button.innerText="✓",button.classList.toggle("but");
+                
+            }
+        }
+        }
+        
+    </script>
+</html>
